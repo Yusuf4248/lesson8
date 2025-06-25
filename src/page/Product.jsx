@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Card from "./Card";
-import ProductModal from "./modal/product.modal";
+import Card from "../components/Card";
+import ProductModal from "../components/modal/product.modal";
 const Product = () => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");

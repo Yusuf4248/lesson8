@@ -1,4 +1,7 @@
-const Counter = ({ counters, setCounters }) => {
+import { useState } from "react";
+
+const Counter = () => {
+  const [counters, setCounters] = useState([]);
   const addCounter = () => {
     setCounters([...counters, { id: Date.now(), count: 0 }]);
   };

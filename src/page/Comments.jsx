@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Users = () => {
-  const [users, setUsers] = useState([]);
+const Comments = () => {
+  const [comments, setComments] = useState([]);
   const [page, setPage] = useState(1);
   const nextPage = () => {
     setPage((prev) => prev + 1);
@@ -12,9 +12,11 @@ const Users = () => {
   };
   useEffect(() => {
     axios
-      .get(`https://jsonplaceholder.typicode.com/users?_page=${page}&_limit=2`)
+      .get(
+        `https://jsonplaceholder.typicode.com/comments?_page=${page}&_limit=5`
+      )
       .then((res) => {
-        setUsers(res.data);
+        setComments(res.data);
       });
   }, [page]);
   return (
@@ -23,25 +25,21 @@ const Users = () => {
         <table className="table table-bordered table-hover">
           <thead>
             <tr>
+              <th>PostId</th>
+              <th>ID</th>
               <th>Name</th>
-              <th>Username</th>
-              <th>Phone number</th>
               <th>Email</th>
-              <th>Address</th>
-              <th>Company</th>
-              <th>Website</th>
+              <th>Body</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((item) => (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{item.username}</td>
-                <td>{item.phone}</td>
-                <td>{item.email}</td>
-                <td>{item.address.street}</td>
-                <td>{item.website}</td>
-                <td>{item.company.name}</td>
+            {comments.map((comment) => (
+              <tr key={comment.id}>
+                <td>{comment.postId}</td>
+                <td>{comment.id}</td>
+                <td>{comment.name}</td>
+                <td>{comment.email}</td>
+                <td>{comment.body}</td>
               </tr>
             ))}
           </tbody>
@@ -62,4 +60,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Comments;
