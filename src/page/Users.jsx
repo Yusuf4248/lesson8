@@ -21,6 +21,9 @@ const Users = () => {
       .then((res) => {
         setUsers(res.data);
       });
+    return () => {
+      setUsers([]);
+    };
   }, [page]);
   return (
     <div className="container">
